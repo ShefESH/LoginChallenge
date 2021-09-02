@@ -1,0 +1,70 @@
+:root {
+    --backgroundColor: #1c1e29;
+    --backgroundColorLight: #33354b;
+    --bodyColor: #fff;
+    --pinkColor: #eb3c68;
+    --lightBlue: #00e7e7;
+    --bodyFont: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+/* centre the content */
+
+a {
+    color: var(--lightBlue);
+}
+
+#content {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: var(--backgroundColorLight);
+    color: white;
+}
+
+#banner {
+    /* display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row; */
+    display: flex;
+    /* width: 50%; */
+    /* height: 200px; */
+    margin: auto;
+    /* border-radius: 10px; */
+    /* border: 3px dashed #1c87c9; */
+    align-items:center;
+    justify-content:center;
+}
+
+#banner h1 {
+    /* padding-top: 5%; */
+    font-size: 3.5em;
+    /* text-align: center; */
+    /* vertical-align: middle; */
+    /* justify-content: center;
+    align-content: center;
+    flex-direction: row; */
+}
+
+#banner h2 {
+    color: var(--pinkColor);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#banner img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 4%;
+    /* display: inline-block; */
+}
+
+.flexcol {
+    display: flex;
+    flex-direction: column;
+}

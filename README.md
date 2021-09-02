@@ -21,16 +21,16 @@ Check python installed:
 PS > python --version
 ```
 
-Install flask:
+Install flask and other dependencies:
 
 ```
-PS > python -m pip install flask
+PS > python -m pip install -r requirements.txt
 ```
 
 **Linux**
 
 ```
-$ python3 -m pip install flask
+$ python3 -m pip install -r requirements.txt
 ```
 
 ## Run
@@ -40,5 +40,6 @@ $ python3 -m pip install flask
 ```
 PS > cd .\web\
 PS > $env:FLASK_APP = "app"
+PS > $env:FLASK_DEBUG = "true"
 PS > python -m flask run
 ```
