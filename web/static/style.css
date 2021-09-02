@@ -55,24 +55,31 @@ footer {
     flex-direction: column;
 }
 
-#form {
+#form, #congrats {
     padding: 4%;
+}
+
+#form {
     display: flex;
     flex-direction: column;
     align-items:center;
     justify-content:center;
 }
 
-#form div {
+form div {
     width: 80%;
     align-items:center;
     justify-content:center;
 }
 
-#form label, #form input, #form button {
+form label, form input, form button {
     max-width: 100%;
 }
 
-#form button {
+form input.submit {
     margin-top: 5%;
+}
+
+form button {
+    margin-top: 15%;
 }

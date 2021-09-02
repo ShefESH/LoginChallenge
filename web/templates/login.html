@@ -15,15 +15,15 @@
 </div>
 
 <div id="form" class="flexcol">
-    <div id="password" class="flexcol">
+    <form action="/verify-login" method="post" id="password" class="flexcol">
         <label for="password">Enter Password</label>
         <input name='password' type='password'></input>
-        <button>Submit</button>
-    </div>
-    <div id="reset" class="flexcol">
+        <input type="submit" value="Submit" class="submit">
+    </form>
+    <form id="reset" class="flexcol">
         <button>Forgot Password?</button>
         </form>
-    </div>
+    </form>
 </div>
 
 {% endblock %}
