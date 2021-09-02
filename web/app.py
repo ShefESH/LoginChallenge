@@ -15,10 +15,12 @@ def index():
 
 @app.route("/verify-login", methods=["POST"])
 def verify_login():
+    #redirect to secret
+    #they can see the path in the redirects if looking carefully
     resp = make_response(redirect('/secret', code=302))
 
-    # print(request.form.get('password'))
-
+    #set cookie with basic encoding
+    #they must guess they need to modify it
     if request.form.get('password') == "SESH2021You'llNeverGuess!":
         print("Correct!")
         resp.set_cookie('status', "authorised".translate(rot13))
@@ -32,6 +34,7 @@ def view_secret():
     if request.cookies.get('status') is not None:
         if request.cookies.get('status').translate(rot13) == "authorised":
             #unset the cookie for the next player
+            #then return the page
             resp = make_response(render_template('secret.html'))
             resp.set_cookie('status', 'none', max_age=0)
             return resp

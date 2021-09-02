@@ -43,3 +43,22 @@ PS > $env:FLASK_APP = "app"
 PS > $env:FLASK_DEBUG = "true"
 PS > python -m flask run
 ```
+
+## Solution
+
+<details>
+
+<summary>Spoilers</summary>
+
+Via login function:
+- Looking closely at the requests when submitting a password shows a POST to `/verify-login` that gives a 302 status code, redirecting to `/secret` which then 302s back to the index page
+- When a password is submitted, a `status` cookie is added - it has a value of `hanhgubevfrq` - checking this in a ROT13 decoder, it reads `unauthorized`
+- If we change this to `authorized` by deleting the first two letters of the encoded version, we can navigate directly to `/secret`
+
+Via password reset (**TODO**):
+- The page has minified javascript that can be prettified
+- It shows that when the 'Forgot Password' button is clicked, the security question pops up
+- The security question is compared server-side via Ajax - but a correct answer just makes the javascript create a new form element on the page which sends a request to a password reset API
+- A request can then be made directly to the API address to reset the password
+
+</details>
