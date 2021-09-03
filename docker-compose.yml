@@ -1,0 +1,7 @@
+services:
+    login-challenge:
+        build: .
+        image: login-challenge:latest
+        container_name: login-challenge
+        ports:
+            - '5000:5000'
