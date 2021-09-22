@@ -49,11 +49,15 @@ def view_secret():
 @app.route("/reset-password", methods=["POST"])
 def reset_password():
     global password
-    password = request.form.get('new_password')
+    print("Current password: " + password)
+    if request.form.get('new_password') != "":
+        password = request.form.get('new_password')
 
     security_answer = request.form.get('security_answer')
 
     if security_answer == "ChocolateCakeWithSprinkles":
+        print("New password: " + password)
         return jsonify({'correct':'true'})
     else:
+        print("Incorrect - Password Unchanged: " + password)
         return jsonify({'correct':'false'})

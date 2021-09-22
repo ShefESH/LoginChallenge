@@ -17,15 +17,27 @@
             // console.log(data);
             if (data.correct == "true") {
                 console.log("yep");
-                $('<label for="">Answer correct! Input new password</label>').appendTo("#response");
+                $('<label for="">Answer correct! Input new password</label><br>').appendTo("#response");
                 $('<input name="new_password"></input>').appendTo("#response");
-                $('<input type="submit" value="Submit" class="submit">').appendTo("#response");
-                // $('#res')
+                $('<button id="new">Submit New Password</button>').appendTo("#response");
+
+                $(function() {
+                    $('button#new').bind('click', function() {
+                    $.post('/reset-password', {
+                        new_password: $('input[name="new_password"]').val(),
+                        security_answer: ''
+                    }, function(data) {
+                        console.log(data);
+                    });
+                    return false;
+                    });
+                });
             }
         });
         return false;
         });
     });
+    
 </script>
 
 <div id="banner">
