@@ -6,6 +6,28 @@
 
 {{super()}}
 
+<script>
+    $(function() {
+        $('button#forgot').bind('click', function() {
+        $.post('/reset-password', {
+            new_password: '',
+            security_answer: $('input[name="sec"]').val()
+        }, function(data) {
+            // $("#result").text(data.result);
+            // console.log(data);
+            if (data.correct == "true") {
+                console.log("yep");
+                $('<label for="">Answer correct! Input new password</label>').appendTo("#response");
+                $('<input name="new_password"></input>').appendTo("#response");
+                $('<input type="submit" value="Submit" class="submit">').appendTo("#response");
+                // $('#res')
+            }
+        });
+        return false;
+        });
+    });
+</script>
+
 <div id="banner">
     <img src="static/seshlogo.png">
     <div class="flexcol">
@@ -21,9 +43,13 @@
         <input type="submit" value="Submit" class="submit">
     </form>
     <form id="reset" class="flexcol">
-        <button>Forgot Password?</button>
-        </form>
+        <label>Forgot Password?</label>
+        <label for=sec>Security Question: What is your favourite food?</label>
+        <input type=text size=5 name=sec value="Security Answer">
+        <button id="forgot">Submit</button>
     </form>
+    <!-- <span id=result>?</span> -->
+    <div id="response"></div>
 </div>
 
 {% endblock %}

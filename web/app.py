@@ -9,6 +9,9 @@ rot13 = str.maketrans(
     'ABCDEFGHIJKLMabcdefghijklmNOPQRSTUVWXYZnopqrstuvwxyz',
     'NOPQRSTUVWXYZnopqrstuvwxyzABCDEFGHIJKLMabcdefghijklm')
 
+# global password
+password = "SESH2021You'llNeverGuess!"
+
 @app.route("/")
 def index():
     return render_template('login.html')
@@ -21,7 +24,7 @@ def verify_login():
 
     #set cookie with basic encoding
     #they must guess they need to modify it
-    if request.form.get('password') == "SESH2021You'llNeverGuess!":
+    if request.form.get('password') == password:
         print("Correct!")
         resp.set_cookie('status', "authorised".translate(rot13))
     else:
@@ -42,3 +45,15 @@ def view_secret():
             return redirect('/', code=302)
     else:
         return redirect('/', code=302)
+
+@app.route("/reset-password", methods=["POST"])
+def reset_password():
+    global password
+    password = request.form.get('new_password')
+
+    security_answer = request.form.get('security_answer')
+
+    if security_answer == "ChocolateCakeWithSprinkles":
+        return jsonify({'correct':'true'})
+    else:
+        return jsonify({'correct':'false'})

@@ -58,7 +58,8 @@ Via login function:
 Via password reset (**TODO**):
 - The page has minified javascript that can be prettified
 - It shows that when the 'Forgot Password' button is clicked, the security question pops up
-- The security question is compared server-side via Ajax - but a correct answer just makes the javascript create a new form element on the page which sends a request to a password reset API
-- A request can then be made directly to the API address to reset the password
+- The security question is compared server-side via Ajax - the form is submitted with `new_password=&security_question=answer` - this shows the user the request format
+- If the question answer is correct, the new password field appears and a new password can be posted to the same endpoint
+- However, the user can simply send `new_password=new&security_question=` and the flask app will behave based on which parameter is set
 
 </details>
