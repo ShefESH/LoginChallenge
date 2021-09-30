@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, jsonify, make_response, redirect, request
 from flask_bootstrap import Bootstrap
-from base64 import b64encode, b64decode
+from base64 import b64encode, b64decode, urlsafe_b64decode
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -32,7 +32,11 @@ def verify_login():
 @app.route("/secret")
 def view_secret():
     if request.cookies.get('status') is not None:
-        if b64decode(request.cookies.get('status')) == "authorised":
+        testCookie=request.cookies.get('status')
+        print(testCookie)
+        cookieVal = b64decode(testCookie.encode('utf-8'), '-_')
+        print(cookieVal)
+        if cookieVal.decode('utf-8') == "authorised":
             #unset the cookie and reset the password for the next player
             #then return the page
             resp = make_response(render_template('secret.html'))
@@ -48,15 +52,12 @@ def view_secret():
 @app.route("/reset-password", methods=["POST"])
 def reset_password():
     global password
-    print("Current password: " + password)
     if request.form.get('new_password') != "":
         password = request.form.get('new_password')
 
     security_answer = request.form.get('security_answer')
 
     if security_answer == "ChocolateCakeWithSprinkles":
-        print("New password: " + password)
         return jsonify({'correct':'true'})
     else:
-        print("Incorrect - Password Unchanged: " + password)
         return jsonify({'correct':'false'})
